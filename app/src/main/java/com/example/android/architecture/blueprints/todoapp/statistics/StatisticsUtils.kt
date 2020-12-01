@@ -17,17 +17,27 @@
 package com.example.android.architecture.blueprints.todoapp.statistics
 
 import com.example.android.architecture.blueprints.todoapp.data.Task
+import timber.log.Timber
 
 /**
  * Function that does some trivial computation. Used to showcase unit tests.
  */
 internal fun getActiveAndCompletedStats(tasks: List<Task>?): StatsResult {
     val totalTasks = tasks!!.size
-    val numberOfActiveTasks = tasks.count { it.isActive }
+    val numberOfCompletedTasks = tasks.count{it.completedTask} //{ it.isActive }
+    val numberOfActiveTasks = tasks.count{ it.isActive }
     return StatsResult(
         activeTasksPercent = 100f * numberOfActiveTasks / tasks.size,
-        completedTasksPercent = 100f * (totalTasks - numberOfActiveTasks) / tasks.size
+        completedTasksPercent = 100f * (totalTasks - numberOfActiveTasks) / tasks.size,
+        isActiveCount = numberOfActiveTasks,
+        isCompletedCount = numberOfCompletedTasks,
+        allTasks = totalTasks
     )
 }
 
-data class StatsResult(val activeTasksPercent: Float, val completedTasksPercent: Float)
+data class StatsResult @JvmOverloads constructor(
+        val activeTasksPercent: Float = 0.0f,
+        val completedTasksPercent: Float = 0.0f,
+        val isActiveCount: Int = 0,
+        val isCompletedCount: Int = 0,
+        val allTasks: Int = 0)
