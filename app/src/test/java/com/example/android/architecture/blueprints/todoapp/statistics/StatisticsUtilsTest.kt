@@ -9,14 +9,15 @@ import org.junit.Test
 class StatisticsUtilsTest : TestCase(){
 
     @Test
-    fun testGetActiveAndCompletedStats_noCompleted_returnsHundredZero(){
+    fun testGetTaskStats_noCompleted_returnsHundredZero(){
         //Create an active task
         val tasks = listOf<Task>(
                 Task(isCompleted = true),
                 Task()
         )
+        val tasks2 = null
         //Call your function
-        val result = getActiveAndCompletedStats(tasks)
+        val result = getTaskStats(tasks2)
 
         //Check your result
 //        assertEquals(result.activeTasksPercent, 50f)

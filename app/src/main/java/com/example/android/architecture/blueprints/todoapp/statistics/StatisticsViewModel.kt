@@ -38,7 +38,7 @@ class StatisticsViewModel(application: Application) : AndroidViewModel(applicati
     private val _dataLoading = MutableLiveData<Boolean>(false)
     private val stats: LiveData<StatsResult?> = tasks.map {
         if (it is Success) {
-            getActiveAndCompletedStats(it.data)
+            getTaskStats(it.data)
         } else {
             null
         }
